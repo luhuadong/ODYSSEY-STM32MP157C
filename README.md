@@ -10,9 +10,48 @@ Etcher 是一个快速将镜像文件刻录到 USB 设备或 SD 卡中的工具�
 
 ## WiFi 设置
 
+使用 `connmanctl` 网络管理工具完成 WiFi 配置，执行如下命令进入交互命令行，输入 quit 退出交互模式。
+
 ```shell
-sudo connmanctl
+debian@npi:~$ sudo connmanctl
+connmanctl> 
 ```
+
+开启 WiFi 功能
+
+```shell
+connmanctl> enable wifi
+```
+
+扫描 WiFi 服务
+
+```shell
+connmanctl> scan wifi
+```
+
+列出可用的服务（附近的 WiFi 网络）
+
+```shell
+connmanctl> services
+```
+
+开启无线网络代理
+
+```shell
+connmanctl> agent on
+```
+
+连接指定 WiFi 网络，并输入密码
+
+```shell
+connmanctl> connect wifi_e8de27077de3_41483034303434393134_managed_psk
+Agent RequestInput wifi_e8de27077de3_41483034303434393134_managed_psk
+  Passphrase = [ Type=psk, Requirement=mandatory ]
+Passphrase? *************
+Connected wifi_e8de27077de3_41483034303434393134_managed_psk
+```
+
+
 
 
 
