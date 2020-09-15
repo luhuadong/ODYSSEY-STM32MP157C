@@ -69,13 +69,25 @@ sudo apt install ssh -y
 ### 安装 python3
 
 ```shell
-sudo apt install python3 python3-pip
+sudo apt install python3 python3-pip -y
 ```
 
 
 
 ```shell
 pip3 install paho-mqtt
+```
+
+
+
+## Cortex-M4 核
+
+更新固件
+
+```shell
+chmod +777 /sys/class/remoteproc/remoteproc0/firmware
+echo demo1_CM4.elf > /sys/class/remoteproc/remoteproc0/firmware
+echo start > /sys/class/remoteproc/remoteproc0/state
 ```
 
 
