@@ -74,3 +74,15 @@ sudo apt install python3 python3-pip
 
 
 
+```shell
+pip3 install paho-mqtt
+```
+
+
+
+
+
+## 参考资料
+
+- [STM32MP1 Developer Package](https://wiki.st.com/stm32mpu/wiki/STM32MP1_Developer_Package)
+
