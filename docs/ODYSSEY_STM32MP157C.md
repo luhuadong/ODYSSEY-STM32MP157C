@@ -2,6 +2,12 @@
 
 ODYSSEY – STM32MP157C 以模块上系统（SoM）和载板的形式创建。SoM 由 MPU，PMIC，RAM 组成，并且载板采用 Raspberry Pi 尺寸。载板上包括所有必需的外围设备，包括千兆以太网、WiFi / BLE、直流电源、USB 主机、USB-C、MIPI-DSI、摄像机、音频的 DVP 等。使用该板，客户可以快速评估 SoM，并轻松快捷地将 SoM 部署在自己的载板上。
 
+![](../images/ODYSSEY-STM32MP157C.png)
+
+
+
+
+
 ## 规格参数
 
 ### 核心板SoM – STM32MP157C
@@ -46,7 +52,7 @@ ODYSSEY – STM32MP157C 以模块上系统（SoM）和载板的形式创建。So
 
 ### 板载资源
 
-![](./images/板载资源分布.png)
+![](../images/板载资源分布.png)
 
 1. 载板：安装核心板 SoM-STM32MP157C的区域。
 2. 直流电源输入端口：12V〜24V / 2A（建议输入12V / 2A电源）。
@@ -82,7 +88,7 @@ ODYSSEY – STM32MP157C 以模块上系统（SoM）和载板的形式创建。So
 
 ### 核心板资源
 
-![](./images/核心板资源分布.png)
+![](../images/核心板资源分布.png)
 
 1. STM32MP157C: 核心板处理器(双架构处理器：Arm Cortex-A7 and Cortex-M4 )
 2. MT41K256M16TW-107:P: 512M 16位RAM内存芯片
@@ -90,3 +96,12 @@ ODYSSEY – STM32MP157C 以模块上系统（SoM）和载板的形式创建。So
 4. EMMC04G-M627: 4GeMMC内存
 5. LED: 成功供电后，PWR将继续工作。当系统正常运行时，USER LED将一直闪烁。
 6. 70针连接器：3路70针板对板连接器
+
+
+
+## 管脚定义
+
+![](../images/40pin管脚定义.png)
+
+
+
