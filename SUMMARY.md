@@ -6,4 +6,9 @@
 * [搭建开发环境](docs/搭建开发环境.md)
 * [编译方法](docs/编译方法.md)
 * [connmanctl 工具](docs/connmanctl工具.md)
+* [GPIO 控制](docs/GPIO控制.md)
+* [I2C 控制](docs/I2C控制.md)
+* [SPI 控制](docs/SPI控制.md)
+* [UART 控制](docs/UART控制.md)
+* [A7 与 M4 的核间通信](docs/A7与M4的核间通信.md)
 

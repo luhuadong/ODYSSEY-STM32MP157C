@@ -108,6 +108,17 @@ sudo apt update
 
 
 
+如果出现如下错误
+
+```shell
+Err:22 https://seeed-studio.github.io/seeed-linux-deb buster InRelease         
+  Temporary failure resolving 'seeed-studio.github.io'
+```
+
+请使用科学上网
+
+
+
 ## 软件安装
 
 ### 安装 ssh
@@ -139,6 +150,31 @@ pip3 install paho-mqtt
 ```shell
 apt install git wget -y
 ```
+
+
+
+### 安装编译环境
+
+```shell
+sudo apt update
+sudo apt install linux-headers-$(uname -r) -y
+```
+
+出现如下错误
+
+```
+E: Unable to locate package linux-headers-4.19.9-stm32-r1
+E: Couldn't find any package by glob 'linux-headers-4.19.9-stm32-r1'
+E: Couldn't find any package by regex 'linux-headers-4.19.9-stm32-r1'
+```
+
+建议使用 Proxy 再次安装
+
+```shell
+Get:1 https://seeed-studio.github.io/seeed-linux-deb buster/main armhf linux-headers-4.19.9-stm32-r1 armhf 1stable
+```
+
+
 
 
 
