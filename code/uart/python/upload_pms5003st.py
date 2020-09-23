@@ -1,12 +1,29 @@
 """
-  Filename: show_pms5003st.py
+  Filename: upload_pms5003st.py
   Date: 2020-09-23
 """
+# -*- coding: utf-8 -*-
+import paho.mqtt.client as mqtt
+import time
+import hashlib
+import hmac
+import random
+import json
 
 import sys
 import glob
 import serial
-import time
+
+options = {
+    'productKey':'',
+    'deviceName':'',
+    'deviceSecret':'',
+    'regionId':'cn-shanghai'
+}
+
+HOST = options['productKey'] + '.iot-as-mqtt.'+options['regionId']+'.aliyuncs.com'
+PORT = 1883
+PUB_TOPIC = "/sys/" + options['productKey'] + "/" + options['deviceName'] + "/thing/event/property/post"
 
 dev_name = '/dev/ttySTM2'
 baudrate = 9600
@@ -17,6 +34,28 @@ CMD_ACTI = bytearray([0x42, 0x4d, 0xe1, 0x00, 0x01, 0x01, 0x71])
 CMD_STAN = bytearray([0x42, 0x4d, 0xe4, 0x00, 0x00, 0x01, 0x73])
 CMD_NORM = bytearray([0x42, 0x4d, 0xe4, 0x00, 0x01, 0x01, 0x74])
 
+# The callback for when the client receives a CONNACK response from the server.
+def on_connect(client, userdata, flags, rc):
+    print("Connected with result code "+str(rc))
+    # client.subscribe("the/topic")
+
+# The callback for when a PUBLISH message is received from the server.
+def on_message(client, userdata, msg):
+    print(msg.topic+" "+str(msg.payload))
+
+def hmacsha1(key, msg):
+    return hmac.new(key.encode(), msg.encode(), hashlib.sha1).hexdigest()
+
+def getAliyunIoTClient():
+	timestamp = str(int(time.time()))
+	CLIENT_ID = "paho.py|securemode=3,signmethod=hmacsha1,timestamp="+timestamp+"|"
+	CONTENT_STR_FORMAT = "clientIdpaho.pydeviceName"+options['deviceName']+"productKey"+options['productKey']+"timestamp"+timestamp
+	# set username/password.
+	USER_NAME = options['deviceName']+"&"+options['productKey']
+	PWD = hmacsha1(options['deviceSecret'],CONTENT_STR_FORMAT)
+	client = mqtt.Client(client_id=CLIENT_ID, clean_session=False)
+	client.username_pw_set(USER_NAME, PWD)
+	return client
 
 def pms_value(hByte, lByte):
 
@@ -90,7 +129,22 @@ def loop(serial):
             print("| extra  | hcho  = {:<4d} | temp  = {:<.1f} | humi  = {:<.1f} |".format(hcho, temp, humi))
             print("+-----------------------------------------------------+\n")
 
-        time.sleep(3)
+            payload_json = {
+                'id': int(time.time()),
+                'params': {
+                    'PM1_0' : PM1_0_atm,
+                    'PM2_5' : PM2_5_atm,
+                    'PM10_0': PM10_0_atm,
+                    'HCHO'  : hcho/1000,
+                    'TEMP'  : temp,
+                    'HUMI'  : humi
+                },
+                'method': "thing.event.property.post"
+            }
+            print('upload data to iot server: ' + str(payload_json))
+            client.publish(PUB_TOPIC, payload=str(payload_json), qos=1)
+
+        time.sleep(5)
 
 def main():
     print("Run ODYSSEY-uart demo")
@@ -114,4 +168,13 @@ def main():
 
 
 if __name__ == '__main__':
+
+    client = getAliyunIoTClient()
+    client.on_connect = on_connect
+    client.on_message = on_message
+    
+    client.connect(HOST, 1883, 300)
+    
     main()
+    client.loop_forever()
+    

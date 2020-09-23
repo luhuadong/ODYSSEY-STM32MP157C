@@ -5,7 +5,6 @@ import hashlib
 import hmac
 import random
 import json
-import time
 
 options = {
     'productKey':'',
