@@ -52,7 +52,7 @@ def loop(serial):
 
             checksum = pms_value(resp[size-2], resp[size-1])
 
-            dsum = start1[0] + start2[0] + len1[0] + len2[0];
+            dsum = start1[0] + start2[0] + len1[0] + len2[0]
 
             for i in range(0, size - 2):
                 dsum = dsum + resp[i]
@@ -63,21 +63,32 @@ def loop(serial):
                 print("Checksum invalid. {} != {}".format(checksum, dsum))
                 continue
 
-            print("PM1.0 : {}".format(pms_value(resp[0], resp[1])))
-            print("PM2.5 : {}".format(pms_value(resp[2], resp[3])))
-            print("PM10  : {}".format(pms_value(resp[4], resp[5])))
-            print("PM1.0 : {}".format(pms_value(resp[6], resp[7])))
-            print("PM2.5 : {}".format(pms_value(resp[8], resp[9])))
-            print("PM10  : {}".format(pms_value(resp[10], resp[11])))
-            print("0.3um : {}".format(pms_value(resp[12], resp[13])))
-            print("0.5um : {}".format(pms_value(resp[14], resp[15])))
-            print("1.0um : {}".format(pms_value(resp[16], resp[17])))
-            print("2.5um : {}".format(pms_value(resp[18], resp[19])))
-            print("5.0um : {}".format(pms_value(resp[20], resp[21])))
-            print("10.0um: {}".format(pms_value(resp[22], resp[23])))
-            print("hcho  : {}".format(pms_value(resp[24], resp[25])/1000))
-            print("temp  : {}".format(pms_value(resp[26], resp[27])/10))
-            print("humi  : {}".format(pms_value(resp[28], resp[29])/10))
+            PM1_0_CF1  = pms_value(resp[0], resp[1])
+            PM2_5_CF1  = pms_value(resp[2], resp[3])
+            PM10_0_CF1 = pms_value(resp[4], resp[5])
+            PM1_0_atm  = pms_value(resp[6], resp[7])
+            PM2_5_atm  = pms_value(resp[8], resp[9])
+            PM10_0_atm = pms_value(resp[10], resp[11])
+            air_0_3um  = pms_value(resp[12], resp[13])
+            air_0_5um  = pms_value(resp[14], resp[15])
+            air_1_0um  = pms_value(resp[16], resp[17])
+            air_2_5um  = pms_value(resp[18], resp[19])
+            air_5_0um  = pms_value(resp[20], resp[21])
+            air_10_0um = pms_value(resp[22], resp[23])
+            hcho       = pms_value(resp[24], resp[25])
+            temp       = pms_value(resp[26], resp[27])/10
+            humi       = pms_value(resp[28], resp[29])/10
+            version    = resp[32]
+            errorCode  = resp[33]
+
+            print("\nResponse => len: {} bytes, version: {02X}, Error: {02X}".format(size+4, version, errorCode))
+            print("+-----------------------------------------------------+")
+            print("|  CF=1  | PM1.0 = {:x<4d} | PM2.5 = {:x<4d} | PM10  = {:x<4d} |".format(PM1_0_CF1, PM2_5_CF1, PM10_0_CF1))
+            print("|  atm.  | PM1.0 = {:x<4d} | PM2.5 = {:x<4d} | PM10  = {:x<4d} |".format(PM1_0_atm, PM2_5_atm, PM10_0_atm))
+            print("|        | 0.3um = {:x<4d} | 0.5um = {:x<4d} | 1.0um = {:x<4d} |".format(air_0_3um, air_0_5um, air_1_0um))
+            print("|        | 2.5um = {:x<4d} | 5.0um = {:x<4d} | 10um  = {:x<4d} |".format(air_2_5um, air_5_0um, air_10_0um))
+            print("| extra  | hcho  = {:x<4d} | temp  = {:x<4d} | humi  = {:x<4d} |".format(hcho, temp, humi))
+            print("+-----------------------------------------------------+")
 
         time.sleep(3)
 
