@@ -3,6 +3,7 @@
 
 
 ```shell
+pip3 install serial
 pip3 install pyserial
 ```
 
