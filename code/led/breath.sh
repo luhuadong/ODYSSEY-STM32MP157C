@@ -2,11 +2,11 @@
 
 softpwm() {
 
-    count  = 1000
-    period = $1
-    pulse  = $2
+    count=1000
+    period=$1
+    pulse=$2
 
-    while (($count > 0))
+    while [ $count -gt 0 ]
     do
         let "count--"
     done
@@ -14,8 +14,8 @@ softpwm() {
 
 softpwm2() {
 
-    hightime = $2
-    lowtime  = `expr $1 - $2`
+    hightime= $2
+    lowtime=`expr $1 - $2`
 
     gpioset gpiochip0 14=0
     usleep $lowtime
@@ -26,10 +26,11 @@ softpwm2() {
 
 while :
 do
-    count = 0
+    count=0
 
-    while (($count < 1000))
+    while [ $count -lt 1000 ]
     do
-        softpwm2(1000, $count)
+        softpwm2 1000 $count
+        let ++count
     done
 done
