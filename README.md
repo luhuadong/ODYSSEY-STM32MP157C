@@ -106,8 +106,6 @@ deb [arch=armhf] http://repos.rcn-ee.com/debian/ buster main
 sudo apt update
 ```
 
-
-
 如果出现如下错误
 
 ```shell
@@ -115,7 +113,13 @@ Err:22 https://seeed-studio.github.io/seeed-linux-deb buster InRelease
   Temporary failure resolving 'seeed-studio.github.io'
 ```
 
-请使用科学上网
+请开启网络代理，或者在 /etc/hosts 文件增加一条记录
+
+```
+185.199.111.153 seeed-studio.github.io
+```
+
+
 
 
 
