@@ -81,14 +81,14 @@ def loop(serial):
             version    = resp[32]
             errorCode  = resp[33]
 
-            print("\nResponse => len: {} bytes, version: {02X}, Error: {02X}".format(size+4, version, errorCode))
+            print("\nResponse => len: {} bytes, version: {:0>2x}, Error: {:0>2x}".format(size+4, version, errorCode))
             print("+-----------------------------------------------------+")
-            print("|  CF=1  | PM1.0 = {:x<4d} | PM2.5 = {:x<4d} | PM10  = {:x<4d} |".format(PM1_0_CF1, PM2_5_CF1, PM10_0_CF1))
-            print("|  atm.  | PM1.0 = {:x<4d} | PM2.5 = {:x<4d} | PM10  = {:x<4d} |".format(PM1_0_atm, PM2_5_atm, PM10_0_atm))
-            print("|        | 0.3um = {:x<4d} | 0.5um = {:x<4d} | 1.0um = {:x<4d} |".format(air_0_3um, air_0_5um, air_1_0um))
-            print("|        | 2.5um = {:x<4d} | 5.0um = {:x<4d} | 10um  = {:x<4d} |".format(air_2_5um, air_5_0um, air_10_0um))
-            print("| extra  | hcho  = {:x<4d} | temp  = {:x<4d} | humi  = {:x<4d} |".format(hcho, temp, humi))
-            print("+-----------------------------------------------------+")
+            print("|  CF=1  | PM1.0 = {:<4d} | PM2.5 = {:<4d} | PM10  = {:<4d} |".format(PM1_0_CF1, PM2_5_CF1, PM10_0_CF1))
+            print("|  atm.  | PM1.0 = {:<4d} | PM2.5 = {:<4d} | PM10  = {:<4d} |".format(PM1_0_atm, PM2_5_atm, PM10_0_atm))
+            print("|        | 0.3um = {:<4d} | 0.5um = {:<4d} | 1.0um = {:<4d} |".format(air_0_3um, air_0_5um, air_1_0um))
+            print("|        | 2.5um = {:<4d} | 5.0um = {:<4d} | 10um  = {:<4d} |".format(air_2_5um, air_5_0um, air_10_0um))
+            print("| extra  | hcho  = {:<4d} | temp  = {:<.1f} | humi  = {:<.1f} |".format(hcho, temp, humi))
+            print("+-----------------------------------------------------+\n")
 
         time.sleep(3)
 
