@@ -13,16 +13,16 @@ sudo apt install linux-headers-$(uname -r) -y
 
 注意：这一步可能需要开启代理才能完成！
 
-2、下载 seeed-linux-dtverlays 仓库，编译并安装 stm32p1 驱动。
+2、下载 seeed-linux-dtoverlays 仓库，编译并安装 stm32p1 驱动。
 
 ```shell
-git clone https://github.com/Seeed-Studio/seeed-linux-dtverlays
+git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays
 ```
 
 编译、安装
 
 ```shell
-cd seeed-linux-dtverlays
+cd seeed-linux-dtoverlays
 make all_stm32mp1 CUSTOM_MOD_FILTER_OUT="jtsn-wm8960" && sudo make install_stm32mp1 CUSTOM_MOD_FILTER_OUT="jtsn-wm8960"
 ```
 
