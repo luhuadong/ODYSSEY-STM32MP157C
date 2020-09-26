@@ -11,4 +11,5 @@
 * [SPI 控制](docs/SPI控制.md)
 * [UART 控制](docs/UART控制.md)
 * [A7 与 M4 的核间通信](docs/A7与M4的核间通信.md)
+* [视频讲稿](docs/视频讲稿.md)
 

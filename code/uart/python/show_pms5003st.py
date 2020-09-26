@@ -101,7 +101,7 @@ def main():
         s.open()
 
     try:
-        s.write(CMD_ACTI)
+        s.write(CMD_PASS)
     except Exception as err:
         print(err)
     finally:
