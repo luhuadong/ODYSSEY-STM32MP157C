@@ -105,7 +105,7 @@ def main():
     except Exception as err:
         print(err)
     finally:
-        time.sleep(0)
+        time.sleep(1)
 
     
     loop(s)

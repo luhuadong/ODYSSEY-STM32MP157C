@@ -2,8 +2,8 @@
 
 while :
 do
-    gpioset gpiochip0 14=0
+    gpioset gpiochip0 3=0
     sleep 1
-    gpioset gpiochip0 14=1
+    gpioset gpiochip0 3=1
     sleep 1
 done

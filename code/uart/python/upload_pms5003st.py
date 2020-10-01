@@ -143,8 +143,9 @@ def loop(serial):
             }
             print('upload data to iot server: ' + str(payload_json))
             client.publish(PUB_TOPIC, payload=str(payload_json), qos=1)
+            time.sleep(4)
 
-        time.sleep(5)
+        time.sleep(1)
 
 def main():
     print("Run ODYSSEY-uart demo")
@@ -159,7 +160,7 @@ def main():
     except Exception as err:
         print(err)
     finally:
-        time.sleep(0)
+        time.sleep(1)
 
     
     loop(s)
