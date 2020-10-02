@@ -162,7 +162,6 @@ def main():
     finally:
         time.sleep(1)
 
-    
     loop(s)
 
     s.close()
@@ -174,7 +173,7 @@ if __name__ == '__main__':
     client.on_connect = on_connect
     client.on_message = on_message
     
-    client.connect(HOST, 1883, 300)
+    client.connect(HOST, PORT, 300)
     
     main()
     client.loop_forever()

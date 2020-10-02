@@ -107,7 +107,6 @@ def main():
     finally:
         time.sleep(1)
 
-    
     loop(s)
 
     s.close()

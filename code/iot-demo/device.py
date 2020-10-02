@@ -15,7 +15,7 @@ options = {
 
 HOST = options['productKey'] + '.iot-as-mqtt.'+options['regionId']+'.aliyuncs.com'
 PORT = 1883
-PUB_TOPIC = "/sys/" + options['productKey'] + "/" + options['deviceName'] + "/thing/event/property/post";
+PUB_TOPIC = "/sys/" + options['productKey'] + "/" + options['deviceName'] + "/thing/event/property/post"
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 	client.on_connect = on_connect
 	client.on_message = on_message
 
-	client.connect(HOST, 1883, 300)
+	client.connect(HOST, PORT, 300)
 
 	client_loop()
 	client.loop_forever()
