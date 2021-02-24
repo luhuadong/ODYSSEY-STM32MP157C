@@ -1,0 +1,7 @@
+Kernel Source
+
+https://github.com/Seeed-Studio/linux
+
+Device tree overlay
+
+https://github.com/Seeed-Studio/seeed-linux-dtoverlays
